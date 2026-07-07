@@ -512,7 +512,7 @@
     }
 
   
-    /* V88 mobile refinements */
+    /* V89 mobile refinements */
     .viewTab{min-height:52px!important}
     .updatePanel,.noticePanel,.modalPanel{
       max-height:min(72vh, 620px);
@@ -535,7 +535,7 @@
     }
 
   
-    /* V88 title aurora background + menu order/type refinements */
+    /* V89 aurora/menu/type/inline-overview refinements */
     .wrap > section.card.header{
       position:sticky;
       top:10px;
@@ -571,7 +571,7 @@
     }
 
   
-    /* V88: robust aurora title card */
+    /* V89: robust aurora title card */
     .wrap > section.card.header,
     .card.header{
       position:sticky!important;
@@ -600,6 +600,84 @@
       background:rgba(255,255,255,.90)!important;
       backdrop-filter:blur(14px);
       -webkit-backdrop-filter:blur(14px);
+    }
+
+  
+    /* V89 final mobile refinements */
+    body{
+      background:
+        radial-gradient(circle at 0% 0%, rgba(59,230,255,.95) 0 16%, transparent 35%),
+        radial-gradient(circle at 100% 2%, rgba(82,255,171,.82) 0 18%, transparent 42%),
+        radial-gradient(circle at 12% 72%, rgba(161,141,255,.28) 0 12%, transparent 36%),
+        radial-gradient(circle at 88% 84%, rgba(255,255,255,.90) 0 18%, transparent 46%),
+        linear-gradient(135deg, #bdf8ff 0%, #c1fff0 34%, #e2fbff 62%, #bffff0 100%) !important;
+    }
+    .wrap > section.card.header,
+    .card.header{
+      position:sticky!important;
+      top:8px!important;
+      z-index:110!important;
+      border:1px solid rgba(97,227,218,.65)!important;
+      overflow:hidden!important;
+      background:
+        radial-gradient(circle at 3% 4%, rgba(51,226,255,.95) 0 17%, transparent 37%),
+        radial-gradient(circle at 96% 10%, rgba(74,255,178,.86) 0 22%, transparent 45%),
+        radial-gradient(circle at 34% 118%, rgba(255,255,255,.95) 0 28%, transparent 55%),
+        linear-gradient(130deg, rgba(255,255,255,.88) 0%, rgba(186,248,255,.92) 42%, rgba(190,255,230,.92) 100%)!important;
+      box-shadow:0 16px 34px rgba(0,166,162,.18)!important;
+      backdrop-filter:blur(18px)!important;
+      -webkit-backdrop-filter:blur(18px)!important;
+    }
+    .wrap > section.card.header:before,
+    .card.header:before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        linear-gradient(115deg, transparent 0 32%, rgba(255,255,255,.65) 42%, transparent 53%),
+        radial-gradient(circle at 24% 36%, rgba(255,255,255,.72), transparent 28%);
+      transform:rotate(-8deg);
+      pointer-events:none;
+    }
+    .header > *{position:relative;z-index:1}
+    #app > .viewSwitchCard{
+      position:sticky!important;
+      top:132px!important;
+      z-index:100!important;
+      background:rgba(255,255,255,.84)!important;
+      backdrop-filter:blur(16px)!important;
+      -webkit-backdrop-filter:blur(16px)!important;
+      border-color:rgba(137,236,229,.70)!important;
+    }
+    .viewSwitchTabs{grid-template-columns:1fr 1fr!important}
+    .viewSwitchBtn{min-height:48px!important}
+    .overviewTableShell{
+      --ov-term:68px!important;
+      --ov-manage:58px!important;
+      --ov-price:96px!important;
+    }
+    .overviewPriceTable thead th{height:40px!important;font-size:11px!important;padding:0 2px!important}
+    .overviewPriceTable tbody tr{height:58px!important}
+    .overviewTermCell{font-size:12.5px!important;padding:5px 2px!important}
+    .overviewTermMain{font-size:12.5px!important}
+    .overviewTermDiscount{font-size:8.8px!important;line-height:1.15!important}
+    .overviewManagePill{min-width:38px!important;min-height:24px!important;font-size:10.5px!important;padding:0 5px!important}
+    .overviewPriceBtn,.overviewPricePlain,.overviewPriceEmpty{min-height:58px!important;font-size:12px!important;padding:4px 2px!important}
+    .overviewPriceBtn .tiny{font-size:8.8px!important;margin-top:3px!important}
+    .overviewSummaryInlineDetail{grid-column:1 / -1;margin-top:10px}
+    .overviewSummary.open{border-color:var(--primary);box-shadow:0 12px 26px rgba(0,167,162,.13)}
+    .overviewSummaryActions{gap:6px!important;flex-wrap:nowrap!important}
+    .overviewOptionPill,.overviewImageBtn,.overviewInfoBtn{height:34px;min-height:34px;padding:0 9px;border-radius:999px;font-size:11px;font-weight:1000;white-space:nowrap}
+    .overviewInfoBtn{border:1px solid #d6f3ed;background:#fff;color:#46616d;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+    @media(max-width:430px){
+      #app > .viewSwitchCard{top:122px!important}
+      .overviewTableShell{--ov-term:64px!important;--ov-manage:54px!important;--ov-price:92px!important}
+      .overviewPriceBtn,.overviewPricePlain,.overviewPriceEmpty{font-size:11.5px!important}
+      .overviewPriceBtn .tiny{font-size:8.4px!important}
+      .overviewDetail{padding:10px!important}
+      .overviewDetailHead{grid-template-columns:92px minmax(0,1fr)!important;gap:10px!important}
+      .overviewDetailImg{width:92px!important;height:126px!important}
+      .overviewTopInfo{min-height:58px!important;padding:8px 10px!important}
     }
 
   </style>
@@ -634,7 +712,7 @@
   <div class="wrap">
     <section class="card header">
       <div class="eyebrow">● 쿠쿠 영업 지원 모바일 시스템</div>
-      <h1>쿠쿠렌탈 제품가격 &amp; 수당계산기 <span class="versionInline">V88</span></h1>
+      <h1>쿠쿠렌탈 제품가격 &amp; 수당계산기 <span class="versionInline">V89</span></h1>
       <p class="sub"></p>
       <div class="credit">기획개발: 김건일 마스터</div>
       <div class="brand"><span class="brandText">CUCKOO</span></div>
@@ -2463,6 +2541,103 @@
         window.scrollTo({top:0, behavior:'smooth'});
       }));
     }
+    function overviewDetailHtml(group){
+      if (!group) return '';
+      const imgHtml = group.imageUrl ? `<div class="overviewDetailImg"><img src="${escapeAttr(group.imageUrl)}" alt="${escapeAttr(group.model)}" loading="lazy"></div>` : '';
+      const groupedByTerm = {};
+      group.rows.forEach(row => {
+        const termKey = String(row.term || '');
+        if (!groupedByTerm[termKey]) groupedByTerm[termKey] = [];
+        groupedByTerm[termKey].push(row);
+      });
+      const sortedTerms = Object.keys(groupedByTerm).sort((a,b) => termSortValue(a) - termSortValue(b));
+      const normalPriceValue = group.rows.map(r => Number(r.normalPrice || 0)).find(v => v > 0) || 0;
+      const termDiscountLabel = rows => {
+        const labels = unique(rows.map(r => {
+          const d = overviewDiscountLabel(r);
+          return d.label && d.label !== '해당없음' ? d.label : '';
+        }).filter(Boolean));
+        return labels.join(' / ');
+      };
+      const priceBtn = (saleKey, row) => {
+        const keyMap = { new:'newRent', package:'packageRent', rerent:'reRent', reOnly:'reOnlyRent', thirdParty:'thirdPartyCompensation' };
+        const rawValue = row[keyMap[saleKey]];
+        const amount = moneyNumber(rawValue);
+        const rawText = String(rawValue || '').trim();
+        if (amount <= 0 && !rawText) return '<div class="overviewPriceEmpty">-</div>';
+        if (amount <= 0 && rawText) return `<div class="overviewPricePlain">${escapeHtml(rawText)}</div>`;
+        const disc = discountInfo(row.discountBenefit || '', amount);
+        const discountOnly = disc && disc.amountText ? String(disc.amountText).replace('할인 렌탈료', '').trim() : '';
+        const discText = discountOnly ? `<span class="tiny">(${escapeHtml(discountOnly)})</span>` : '';
+        return `<button type="button" class="overviewPriceBtn" data-ov-apply-category="${escapeAttr(group.category)}" data-ov-apply-type="${escapeAttr(group.productType || '')}" data-ov-apply-model="${escapeAttr(group.model)}" data-ov-apply-term="${escapeAttr(String(row.term || ''))}" data-ov-apply-manage="${escapeAttr(normManageValue(row.manageType) || '')}" data-ov-apply-sale="${escapeAttr(saleKey)}">${escapeHtml(won0(amount))}${discText}</button>`;
+      };
+      const showReOnlyColumn = group.rows.some(row => moneyNumber(row.reOnlyRent) > 0 || String(row.reOnlyRent || '').trim());
+      const showThirdPartyColumn = group.rows.some(row => moneyNumber(row.thirdPartyCompensation) > 0 || String(row.thirdPartyCompensation || '').trim());
+      const saleColumns = [
+        { key:'new', label:'신규' },
+        { key:'package', label:'패키지' },
+        { key:'rerent', label:'재렌탈' }
+      ];
+      if (showReOnlyColumn) saleColumns.push({ key:'reOnly', label:'재탈전용' });
+      if (showThirdPartyColumn) saleColumns.push({ key:'thirdParty', label:'타사보상' });
+      const priceColWidth = 96;
+      const scrollMinWidth = saleColumns.length * priceColWidth;
+      const fixedRows = sortedTerms.map(termKey => {
+        const rows = groupedByTerm[termKey].slice().sort((a,b) => normManageValue(a.manageType).localeCompare(normManageValue(b.manageType), 'ko'));
+        const discountLabel = termDiscountLabel(rows);
+        return rows.map((row, idx) => `
+          <tr>
+            ${idx === 0 ? `<td class="overviewTermCell" rowspan="${rows.length}"><div class="overviewTermWrap"><div class="overviewTermMain">${escapeHtml(termKey)}개월</div>${discountLabel ? `<div class="overviewTermDiscount">${escapeHtml(discountLabel)}</div>` : ''}</div></td>` : ''}
+            <td class="overviewManageCell"><span class="overviewManagePill ${normManageValue(row.manageType) === '셀프' ? 'self' : (normManageValue(row.manageType) === '방문' ? 'visit' : '')}">${escapeHtml(normManageValue(row.manageType) || '공통')}</span></td>
+          </tr>`).join('');
+      }).join('');
+      const priceRows = sortedTerms.map(termKey => {
+        const rows = groupedByTerm[termKey].slice().sort((a,b) => normManageValue(a.manageType).localeCompare(normManageValue(b.manageType), 'ko'));
+        return rows.map(row => `
+          <tr>
+            ${saleColumns.map(col => `<td>${priceBtn(col.key, row)}</td>`).join('')}
+          </tr>`).join('');
+      }).join('');
+      const priceColGroupHtml = saleColumns.map(() => `<col style="width:${priceColWidth}px">`).join('');
+      return `
+        <div class="overviewSummaryInlineDetail">
+          <div class="overviewDetail">
+            <div class="overviewDetailHead">
+              ${imgHtml || '<div class="overviewDetailImg"></div>'}
+              <div>
+                <div class="overviewDetailTitle">${escapeHtml(group.model)}</div>
+                <div class="overviewDetailSub">${escapeHtml(group.category)}${group.productType ? ' · ' + escapeHtml(group.productType) : ''} · 옵션 ${group.optionCount}개</div>
+                <div class="overviewDetailActions">
+                  <button type="button" class="overviewDetailClose" data-ov-close="${escapeAttr(group.key)}">접기</button>
+                  ${group.imageUrl ? `<button type="button" class="overviewImageBtn" data-ov-image-url="${escapeAttr(group.imageUrl)}" data-ov-image-title="${escapeAttr(group.model)}" data-ov-image-sub="${escapeAttr(group.category)}">🔍 제품확대</button>` : ''}
+                  <button type="button" class="overviewInfoBtn" data-ov-info-key="${escapeAttr(group.key)}">제품보기</button>
+                </div>
+                <div class="overviewTopInfo">
+                  <div class="overviewTopInfoLabel">정상가</div>
+                  <div>${normalPriceValue > 0 ? `<span class="overviewTopNormal">${escapeHtml(won0(normalPriceValue))}</span>` : '<span style="font-size:14px;color:#8aa0aa;font-weight:900">-</span>'}</div>
+                </div>
+              </div>
+            </div>
+            ${saleColumns.length > 3 ? `<div class="overviewScrollHint">← 가격표를 좌우로 스크롤하세요 →</div>` : ""}
+            <div class="overviewTableShell">
+              <div class="overviewTableFixed">
+                <table class="overviewPriceTable overviewFixedTable">
+                  <colgroup><col><col></colgroup>
+                  <thead><tr><th>기간</th><th>구분</th></tr></thead>
+                  <tbody>${fixedRows}</tbody>
+                </table>
+              </div>
+              <div class="overviewTableScroll">
+                <table class="overviewPriceTable overviewScrollTable" style="min-width:${scrollMinWidth}px">
+                  <colgroup>${priceColGroupHtml}</colgroup>
+                  <thead><tr>${saleColumns.map(col => `<th>${escapeHtml(col.label)}</th>`).join('')}</tr></thead>
+                  <tbody>${priceRows}</tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
     function renderOverviewList(){
       const box = $('overviewList');
       if (!box) return;
@@ -2471,8 +2646,10 @@
         box.innerHTML = '<div class="overviewEmpty">표시할 모델이 없습니다.</div>';
         return;
       }
-      box.innerHTML = groups.map(g => `
-        <div class="overviewSummary">
+      box.innerHTML = groups.map(g => {
+        const isOpen = state.overviewOpenModel === g.key;
+        return `
+        <div class="overviewSummary${isOpen ? ' open' : ''}">
           <div class="overviewSummaryMain">
             <button type="button" class="overviewSummaryImgBtn" data-ov-model="${escapeAttr(g.key)}" aria-label="${escapeAttr(g.model)} 옵션 보기">
               <div class="overviewSummaryImg">${g.imageUrl ? `<img src="${escapeAttr(g.imageUrl)}" alt="${escapeAttr(g.model)}" loading="lazy">` : ''}</div>
@@ -2483,19 +2660,34 @@
                 <div class="overviewCategory">${escapeHtml(g.category)}${g.productType ? ' · ' + escapeHtml(g.productType) : ''}</div>
               </button>
               <div class="overviewSummaryActions">
-                <button type="button" class="overviewOptionPill" data-ov-model="${escapeAttr(g.key)}">옵션 ${g.optionCount}개 보기</button>
+                <button type="button" class="overviewOptionPill" data-ov-model="${escapeAttr(g.key)}">${isOpen ? '옵션 닫기' : '옵션 ' + g.optionCount + '개 보기'}</button>
                 ${g.imageUrl ? `<button type="button" class="overviewImageBtn" data-ov-image-url="${escapeAttr(g.imageUrl)}" data-ov-image-title="${escapeAttr(g.model)}" data-ov-image-sub="${escapeAttr(g.category)}">🔍 제품확대</button>` : ''}
+                <button type="button" class="overviewInfoBtn" data-ov-info-key="${escapeAttr(g.key)}">제품보기</button>
               </div>
             </div>
           </div>
-        </div>`).join('');
+          ${isOpen ? overviewDetailHtml(g) : ''}
+        </div>`;
+      }).join('');
       box.querySelectorAll('[data-ov-model]').forEach(btn => btn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        state.overviewOpenModel = btn.dataset.ovModel || '';
+        const key = btn.dataset.ovModel || '';
+        state.overviewOpenModel = state.overviewOpenModel === key ? '' : key;
         renderAll();
-        const top = $('overviewSelectedBox');
-        if (top) top.scrollIntoView({behavior:'smooth', block:'start'});
+      }));
+      box.querySelectorAll('[data-ov-close]').forEach(btn => btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        state.overviewOpenModel = '';
+        renderAll();
+      }));
+      box.querySelectorAll('[data-ov-info-key]').forEach(btn => btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const key = btn.dataset.ovInfoKey || '';
+        const group = overviewGroups().find(g => g.key === key);
+        if (group && group.rows && group.rows.length) openProductInfoForProduct(group.rows[0]);
       }));
       box.querySelectorAll('[data-ov-image-url]').forEach(btn => btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -2513,7 +2705,8 @@
     function renderOverview(){
       if ($('overviewSearchInput') && $('overviewSearchInput').value !== (state.overviewSearch || '')) $('overviewSearchInput').value = state.overviewSearch || '';
       renderOverviewCategories();
-      renderOverviewSelected();
+      const selectedBox = $('overviewSelectedBox');
+      if (selectedBox) selectedBox.innerHTML = '';
       renderOverviewList();
     }
     function renderAll(){
@@ -2522,6 +2715,7 @@
       renderMainView();
       if ($('modelSearchInput') && $('modelSearchInput').value !== state.search) $('modelSearchInput').value = state.search || '';
       renderCategories();
+      renderTypes();
       renderModels();
       renderTerms();
       renderModelSearchResults();
@@ -3246,9 +3440,33 @@ function renderResult(){
         })
         .getAppData();
     }
+
+    function openProductInfoForProduct(p){
+      if (!p) return;
+      $('productModal').classList.remove('hide');
+      $('modalTitle').textContent = p.model + ' 제품정보';
+      $('modalSub').textContent = p.category + (p.productType ? ' · ' + p.productType : '') + ' · ' + (normManageValue(p.manageType) || state.manage || '전체') + ' · ' + p.term + '개월';
+      $('modalBody').innerHTML = '<div class="galleryMsg">상세페이지에서 공개 이미지 URL을 찾는 중입니다...</div>';
+      $('openOfficialBtn').disabled = !p.detailUrl;
+
+      if (!p.detailUrl) {
+        $('modalBody').innerHTML = '<div class="galleryMsg">제품상세URL이 등록되어 있지 않습니다.</div>';
+        return;
+      }
+
+      google.script.run
+        .withSuccessHandler(res => renderGallery(res, p))
+        .withFailureHandler(err => {
+          $('modalBody').innerHTML = '<div class="galleryMsg">이미지를 불러오지 못했습니다.<br>' + escapeHtml(err && err.message ? err.message : String(err)) + '<div class="small">아래 공식 상세페이지 열기 버튼으로 확인할 수 있습니다.</div></div>';
+        })
+        .extractProductImages(p.detailUrl);
+    }
+
     function openProductInfo(){
       const p = selectedProduct();
       if (!p) return;
+      openProductInfoForProduct(p);
+      return;
       $('productModal').classList.remove('hide');
       $('modalTitle').textContent = p.model + ' 제품정보';
       $('modalSub').textContent = p.category + ' · ' + state.manage + ' · ' + p.term + '개월';
