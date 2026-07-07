@@ -512,7 +512,7 @@
     }
 
   
-    /* V90 mobile refinements */
+    /* V91 mobile refinements */
     .viewTab{min-height:52px!important}
     .updatePanel,.noticePanel,.modalPanel{
       max-height:min(72vh, 620px);
@@ -535,7 +535,7 @@
     }
 
   
-    /* V90 aurora/menu/type/inline-overview refinements */
+    /* V91 aurora/menu/type/inline-overview refinements */
     .wrap > section.card.header{
       position:sticky;
       top:10px;
@@ -571,7 +571,7 @@
     }
 
   
-    /* V90: robust aurora title card */
+    /* V91: robust aurora title card */
     .wrap > section.card.header,
     .card.header{
       position:sticky!important;
@@ -603,7 +603,7 @@
     }
 
   
-    /* V90 final mobile refinements */
+    /* V91 final mobile refinements */
     body{
       background:
         radial-gradient(circle at 0% 0%, rgba(59,230,255,.95) 0 16%, transparent 35%),
@@ -681,7 +681,7 @@
     }
 
   
-    /* V90: softer purple aurora + fixed header overlap + simple inline table */
+    /* V91: softer purple aurora + fixed header overlap + simple inline table */
     body{
       background:
         radial-gradient(circle at 2% 0%, rgba(152,235,255,.48) 0 18%, transparent 39%),
@@ -801,6 +801,54 @@
       .overviewTableShell{--ov-term:58px!important;--ov-manage:50px!important;--ov-price:86px!important}
     }
 
+  
+    /* V91: logo/type-selector final fix */
+    body{
+      background:
+        radial-gradient(circle at 2% 0%, rgba(164,238,255,.42) 0 17%, transparent 38%),
+        radial-gradient(circle at 98% 2%, rgba(187,255,224,.34) 0 18%, transparent 42%),
+        radial-gradient(circle at 18% 72%, rgba(210,188,255,.38) 0 16%, transparent 43%),
+        radial-gradient(circle at 82% 82%, rgba(235,219,255,.34) 0 18%, transparent 48%),
+        linear-gradient(135deg, #e3fbff 0%, #effff9 38%, #f3edff 70%, #eafcff 100%) !important;
+    }
+    .wrap > section.card.header,.card.header{
+      background:
+        radial-gradient(circle at 5% 4%, rgba(159,236,255,.40) 0 18%, transparent 39%),
+        radial-gradient(circle at 94% 12%, rgba(180,255,222,.31) 0 21%, transparent 46%),
+        radial-gradient(circle at 54% 104%, rgba(211,190,255,.40) 0 25%, transparent 54%),
+        linear-gradient(135deg, rgba(255,255,255,.97) 0%, rgba(231,253,255,.90) 42%, rgba(243,236,255,.82) 72%, rgba(231,255,244,.86) 100%)!important;
+      min-height:106px!important;
+    }
+    .brand{
+      position:absolute!important;
+      left:auto!important;
+      right:18px!important;
+      top:48px!important;
+      bottom:auto!important;
+      transform:none!important;
+      width:88px!important;
+      min-width:88px!important;
+      height:24px!important;
+      display:flex!important;
+      justify-content:flex-end!important;
+      align-items:center!important;
+      z-index:9!important;
+      pointer-events:none!important;
+    }
+    .brandText{font-size:17px!important;line-height:1!important;text-align:right!important;letter-spacing:-1.2px!important;color:#5f666c!important;white-space:nowrap!important}
+    h1{margin-right:102px!important}
+    .credit{margin-right:102px!important;white-space:nowrap!important}
+    .overviewTypeBox{display:block;margin-top:2px}
+    .overviewTypeBox.hide{display:none!important}
+    .overviewTypeBox label{margin-bottom:8px}
+    .typeChips{padding-bottom:2px}
+    @media(max-width:430px){
+      .brand{right:16px!important;top:46px!important;width:84px!important;min-width:84px!important}
+      .brandText{font-size:16.5px!important}
+      h1{margin-right:96px!important}
+      .credit{margin-right:96px!important}
+    }
+
   </style>
 </head>
 <body>
@@ -833,7 +881,7 @@
   <div class="wrap">
     <section class="card header">
       <div class="eyebrow">● 쿠쿠 영업 지원 모바일 시스템</div>
-      <h1>쿠쿠렌탈 제품가격 &amp; 수당계산기 <span class="versionInline">V90</span></h1>
+      <h1>쿠쿠렌탈 제품가격 &amp; 수당계산기 <span class="versionInline">V91</span></h1>
       <p class="sub"></p>
       <div class="credit">기획개발: 김건일 마스터</div>
       <div class="brand"><span class="brandText">CUCKOO</span></div>
@@ -953,6 +1001,10 @@
             <div>
               <label>제품군</label>
               <div id="overviewCategoryChips" class="overviewChipRow"></div>
+            </div>
+            <div id="overviewTypeBox" class="overviewTypeBox hide">
+              <label>타입</label>
+              <div id="overviewTypeChips" class="overviewChipRow typeChips"></div>
             </div>
             <div id="overviewSelectedBox"></div>
             <div id="overviewList" class="overviewList"></div>
@@ -1943,6 +1995,15 @@
       showError((DATA && DATA.error) ? DATA.error : '데이터를 불러오지 못했습니다.');
     }
 
+    function normalizeLoadedProducts(){
+      if (!DATA || !Array.isArray(DATA.products)) return;
+      DATA.products.forEach(p => {
+        const t = getProductTypeValue(p);
+        p.productType = t;
+        p.type = t;
+      });
+    }
+
     function showLoadedApp(){
       $('loadingBox').classList.add('hide');
       $('app').classList.remove('hide');
@@ -2105,6 +2166,7 @@
             return;
           }
           DATA = data;
+          normalizeLoadedProducts();
           cacheIntroVideos(DATA.introVideos);
           showLoadedApp();
         })
@@ -2247,6 +2309,9 @@
       if (hasVisit) return '방문';
       return text;
     }
+    function getProductTypeValue(p){
+      return String((p && (p.productType || p.type || p['타입'])) || '').trim();
+    }
     function productPassManage(p){
       const mt = normManageValue(p.manageType);
       return !mt || mt === '전체' || mt === state.manage;
@@ -2262,7 +2327,7 @@
     function productPassSearch(p){
       const q = normalizeText(state.search);
       if (!q) return true;
-      return normalizeText(p.model).indexOf(q) >= 0 || normalizeText(p.category).indexOf(q) >= 0 || normalizeText(p.productType || '').indexOf(q) >= 0;
+      return normalizeText(p.model).indexOf(q) >= 0 || normalizeText(p.category).indexOf(q) >= 0 || normalizeTextgetProductTypeValue(p).indexOf(q) >= 0;
     }
     function filteredProducts(){
       return baseFilteredProducts().filter(productPassSearch);
@@ -2272,14 +2337,14 @@
         if (!state.category) return true;
         if (p.category !== state.category) return false;
         if (!state.productType) return true;
-        return String(p.productType || '') === String(state.productType || '');
+        return String(getProductTypeValue(p)) === String(state.productType || '');
       });
     }
     function modelSearchMatches(){
       const rows = filteredProducts();
       const seen = new Set();
       return rows.filter(p => {
-        const key = String(p.category) + '||' + String(p.productType || '') + '||' + String(p.model);
+        const key = String(p.category) + '||' + String(getProductTypeValue(p)) + '||' + String(p.model);
         if (seen.has(key)) return false;
         seen.add(key);
         return true;
@@ -2301,8 +2366,8 @@
         return;
       }
       box.innerHTML = matches.map(p => {
-        const active = state.category === p.category && (state.productType || '') === (p.productType || '') && state.model === p.model ? ' active' : '';
-        return `<button type="button" class="searchResultBtn${active}" data-search-category="${escapeAttr(p.category)}" data-search-type="${escapeAttr(p.productType || '')}" data-search-model="${escapeAttr(p.model)}"><span class="cat">${escapeHtml(p.category)}${p.productType ? ' · ' + escapeHtml(p.productType) : ''}</span>${escapeHtml(p.model)}</button>`;
+        const active = state.category === p.category && (state.productType || '') === getProductTypeValue(p) && state.model === p.model ? ' active' : '';
+        return `<button type="button" class="searchResultBtn${active}" data-search-category="${escapeAttr(p.category)}" data-search-type="${escapeAttrgetProductTypeValue(p)}" data-search-model="${escapeAttr(p.model)}"><span class="cat">${escapeHtml(p.category)}${getProductTypeValue(p) ? ' · ' + escapeHtml(getProductTypeValue(p)) : ''}</span>${escapeHtml(p.model)}</button>`;
       }).join('');
       box.querySelectorAll('[data-search-model]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -2331,10 +2396,10 @@
         const types = unique(typeRows.map(p => p.productType || '').filter(Boolean));
         if (types.length === 1) {
           state.productType = types[0];
-        } else if (state.productType && !typeRows.some(p => (p.productType || '') === state.productType)) {
+        } else if (state.productType && !typeRows.some(p => getProductTypeValue(p) === state.productType)) {
           state.productType = '';
         }
-        const modelBaseRows = state.productType ? typeRows.filter(p => (p.productType || '') === state.productType) : typeRows;
+        const modelBaseRows = state.productType ? typeRows.filter(p => getProductTypeValue(p) === state.productType) : typeRows;
         const models = unique(modelBaseRows.map(p => p.model));
         if (!state.model || models.indexOf(state.model) < 0) {
           state.model = models.length === 1 ? models[0] : '';
@@ -2399,7 +2464,7 @@
 
       const allCatRows = rows.filter(p => p.category === state.category);
       const availableTypes = unique(allCatRows.map(p => p.productType || '').filter(Boolean));
-      if (state.productType && !allCatRows.some(p => (p.productType || '') === state.productType)) {
+      if (state.productType && !allCatRows.some(p => getProductTypeValue(p) === state.productType)) {
         state.productType = '';
         state.model = '';
         state.term = '';
@@ -2469,19 +2534,26 @@
       const q = normalizeText(state.overviewSearch || '');
       let filtered = rows.filter(p => {
         if (!q) return true;
-        return normalizeText(p.model).indexOf(q) >= 0 || normalizeText(p.category).indexOf(q) >= 0 || normalizeText(p.productType || '').indexOf(q) >= 0;
+        return normalizeText(p.model).indexOf(q) >= 0 || normalizeText(p.category).indexOf(q) >= 0 || normalizeText(getProductTypeValue(p)).indexOf(q) >= 0;
       });
       const cats = unique(filtered.map(p => p.category)).filter(Boolean);
       if (!state.overviewCategory && cats.length) state.overviewCategory = cats[0];
       if (state.overviewCategory && cats.includes(state.overviewCategory)) {
         filtered = filtered.filter(p => p.category === state.overviewCategory);
       }
+      const types = unique(filtered.map(p => getProductTypeValue(p)).filter(Boolean));
+      if (state.overviewType && types.indexOf(state.overviewType) >= 0) {
+        filtered = filtered.filter(p => getProductTypeValue(p) === state.overviewType);
+      } else if (state.overviewType) {
+        state.overviewType = '';
+      }
       return filtered;
     }
     function overviewGroups(){
       const groupsMap = new Map();
       overviewCategoryRows().forEach(p => {
-        const key = String(p.category || '') + '||' + String(p.productType || '') + '||' + String(p.model || '');
+        const pType = getProductTypeValue(p);
+        const key = String(p.category || '') + '||' + String(pType) + '||' + String(p.model || '');
         if (!groupsMap.has(key)) {
           groupsMap.set(key, { key:key, category:p.category || '', productType:p.productType || '', model:p.model || '', imageUrl:p.imageUrl || '', detailUrl:p.detailUrl || '', rows:[] });
         }
@@ -2521,16 +2593,41 @@
     }
     function renderOverviewCategories(){
       const box = $('overviewCategoryChips');
+      const typeBox = $('overviewTypeBox');
+      const typeChips = $('overviewTypeChips');
       if (!box) return;
       const q = normalizeText(state.overviewSearch || '');
       const rows = Array.isArray(DATA && DATA.products) ? DATA.products.slice() : [];
-      const filtered = rows.filter(p => !q || normalizeText(p.model).indexOf(q) >= 0 || normalizeText(p.category).indexOf(q) >= 0 || normalizeText(p.productType || '').indexOf(q) >= 0);
+      const filtered = rows.filter(p => !q || normalizeText(p.model).indexOf(q) >= 0 || normalizeText(p.category).indexOf(q) >= 0 || normalizeText(getProductTypeValue(p)).indexOf(q) >= 0);
       const cats = unique(filtered.map(p => p.category)).filter(Boolean);
       if (!state.overviewCategory && cats.length) state.overviewCategory = cats[0];
-      if (state.overviewCategory && cats.length && cats.indexOf(state.overviewCategory) < 0) state.overviewCategory = cats[0] || '';
+      if (state.overviewCategory && cats.length && cats.indexOf(state.overviewCategory) < 0) {
+        state.overviewCategory = cats[0] || '';
+        state.overviewType = '';
+      }
       box.innerHTML = cats.map(c => `<button type="button" class="overviewChip${state.overviewCategory === c ? ' active' : ''}" data-ov-cat="${escapeAttr(c)}">${escapeHtml(c)}</button>`).join('');
       box.querySelectorAll('[data-ov-cat]').forEach(btn => btn.addEventListener('click', () => {
         state.overviewCategory = btn.dataset.ovCat || '';
+        state.overviewType = '';
+        if (state.overviewOpenModel && !overviewGroups().some(g => g.key === state.overviewOpenModel)) state.overviewOpenModel = '';
+        renderAll();
+      }));
+
+      const typeRows = state.overviewCategory ? filtered.filter(p => p.category === state.overviewCategory) : [];
+      const types = unique(typeRows.map(p => getProductTypeValue(p)).filter(Boolean));
+      if (!typeBox || !typeChips) return;
+      if (!state.overviewCategory || !types.length) {
+        state.overviewType = '';
+        typeBox.classList.add('hide');
+        typeChips.innerHTML = '';
+        return;
+      }
+      typeBox.classList.remove('hide');
+      if (state.overviewType && types.indexOf(state.overviewType) < 0) state.overviewType = '';
+      typeChips.innerHTML = '<button type="button" class="overviewChip' + (!state.overviewType ? ' active' : '') + '" data-ov-type="">전체</button>'
+        + types.map(t => `<button type="button" class="overviewChip${state.overviewType === t ? ' active' : ''}" data-ov-type="${escapeAttr(t)}">${escapeHtml(t)}</button>`).join('');
+      typeChips.querySelectorAll('[data-ov-type]').forEach(btn => btn.addEventListener('click', () => {
+        state.overviewType = btn.dataset.ovType || '';
         if (state.overviewOpenModel && !overviewGroups().some(g => g.key === state.overviewOpenModel)) state.overviewOpenModel = '';
         renderAll();
       }));
@@ -2837,7 +2934,7 @@
       const select = $('typeSelect');
       if (!field || !select) return;
       const rows = state.category ? filteredProducts().filter(p => p.category === state.category) : [];
-      const types = unique(rows.map(p => p.productType || '').filter(Boolean));
+      const types = unique(rows.map(p => getProductTypeValue(p)).filter(Boolean));
       if (!state.category || !types.length) {
         state.productType = '';
         field.classList.add('hide');
@@ -3532,6 +3629,7 @@ function renderResult(){
             return;
           }
           DATA = data;
+          normalizeLoadedProducts();
           cacheIntroVideos(DATA.introVideos);
           renderAll();
           if (hasValidUserProfile()) maybeShowProductUpdateNotice();
