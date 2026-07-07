@@ -512,7 +512,7 @@
     }
 
   
-    /* V89 mobile refinements */
+    /* V90 mobile refinements */
     .viewTab{min-height:52px!important}
     .updatePanel,.noticePanel,.modalPanel{
       max-height:min(72vh, 620px);
@@ -535,7 +535,7 @@
     }
 
   
-    /* V89 aurora/menu/type/inline-overview refinements */
+    /* V90 aurora/menu/type/inline-overview refinements */
     .wrap > section.card.header{
       position:sticky;
       top:10px;
@@ -571,7 +571,7 @@
     }
 
   
-    /* V89: robust aurora title card */
+    /* V90: robust aurora title card */
     .wrap > section.card.header,
     .card.header{
       position:sticky!important;
@@ -603,7 +603,7 @@
     }
 
   
-    /* V89 final mobile refinements */
+    /* V90 final mobile refinements */
     body{
       background:
         radial-gradient(circle at 0% 0%, rgba(59,230,255,.95) 0 16%, transparent 35%),
@@ -680,6 +680,127 @@
       .overviewTopInfo{min-height:58px!important;padding:8px 10px!important}
     }
 
+  
+    /* V90: softer purple aurora + fixed header overlap + simple inline table */
+    body{
+      background:
+        radial-gradient(circle at 2% 0%, rgba(152,235,255,.48) 0 18%, transparent 39%),
+        radial-gradient(circle at 98% 4%, rgba(187,255,222,.40) 0 18%, transparent 42%),
+        radial-gradient(circle at 20% 75%, rgba(198,178,255,.32) 0 14%, transparent 42%),
+        radial-gradient(circle at 78% 78%, rgba(230,210,255,.26) 0 16%, transparent 46%),
+        linear-gradient(135deg, #ddfbff 0%, #e9fff8 36%, #f3edff 68%, #e8fdff 100%) !important;
+    }
+    .wrap > section.card.header,
+    .card.header{
+      position:relative!important;
+      top:auto!important;
+      z-index:30!important;
+      min-height:112px!important;
+      padding:18px 18px 18px!important;
+      overflow:hidden!important;
+      border:1px solid rgba(174,226,231,.72)!important;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(147,232,255,.42) 0 18%, transparent 38%),
+        radial-gradient(circle at 96% 10%, rgba(181,255,218,.36) 0 20%, transparent 44%),
+        radial-gradient(circle at 56% 95%, rgba(207,184,255,.32) 0 22%, transparent 50%),
+        linear-gradient(135deg, rgba(255,255,255,.95) 0%, rgba(226,252,255,.88) 42%, rgba(240,232,255,.78) 72%, rgba(228,255,242,.84) 100%)!important;
+      box-shadow:0 12px 26px rgba(0,166,162,.10)!important;
+      backdrop-filter:blur(14px)!important;
+      -webkit-backdrop-filter:blur(14px)!important;
+    }
+    .wrap > section.card.header::before,
+    .card.header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(115deg, rgba(255,255,255,.30), transparent 42%, rgba(255,255,255,.24) 68%, transparent);
+      pointer-events:none;
+    }
+    .wrap > section.card.header::after,
+    .card.header::after{
+      content:"";
+      position:absolute;
+      right:-18px;
+      bottom:-36px;
+      width:150px;
+      height:120px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(190,166,255,.26), transparent 64%);
+      pointer-events:none;
+    }
+    .header > *{position:relative;z-index:2}
+    .brand{
+      top:50%!important;
+      transform:translateY(-50%)!important;
+      right:18px!important;
+      width:86px!important;
+      min-width:86px!important;
+      z-index:5!important;
+    }
+    .brandText{font-size:18px!important;color:#5f666c!important}
+    .credit{margin-right:96px!important;white-space:nowrap!important}
+    h1{margin-right:96px!important}
+    #app > .viewSwitchCard,
+    .viewSwitchCard{
+      position:sticky!important;
+      top:0!important;
+      z-index:95!important;
+      background:rgba(255,255,255,.88)!important;
+      border-color:rgba(171,229,230,.75)!important;
+      backdrop-filter:blur(16px)!important;
+      -webkit-backdrop-filter:blur(16px)!important;
+      box-shadow:0 10px 20px rgba(0,166,162,.08)!important;
+    }
+    .overviewSummaryInlineDetail{
+      display:block!important;
+      grid-column:1 / -1!important;
+      margin-top:12px!important;
+      padding-top:0!important;
+      border-top:0!important;
+    }
+    .overviewSummaryInlineDetail .overviewDetail{
+      border:0!important;
+      box-shadow:none!important;
+      padding:0!important;
+      background:transparent!important;
+      border-radius:0!important;
+    }
+    .overviewSummaryInlineDetail .overviewDetailHead,
+    .overviewSummaryInlineDetail .overviewTopInfo,
+    .overviewSummaryInlineDetail .overviewDetailTitle,
+    .overviewSummaryInlineDetail .overviewDetailSub,
+    .overviewSummaryInlineDetail .overviewDetailActions{
+      display:none!important;
+    }
+    .overviewSummary.open{border-color:var(--primary)!important;box-shadow:0 12px 26px rgba(0,167,162,.13)!important}
+    .overviewTableShell{
+      --ov-term:62px!important;
+      --ov-manage:52px!important;
+      --ov-price:88px!important;
+      margin-top:0!important;
+      border-radius:16px!important;
+    }
+    .overviewPriceTable thead th{height:38px!important;font-size:10.5px!important;padding:0 1px!important}
+    .overviewPriceTable tbody tr{height:56px!important}
+    .overviewTermCell{font-size:12px!important;padding:4px 1px!important}
+    .overviewTermMain{font-size:12px!important}
+    .overviewTermDiscount{font-size:8.4px!important;line-height:1.12!important}
+    .overviewManageCell{padding:4px 1px!important}
+    .overviewManagePill{min-width:34px!important;min-height:22px!important;font-size:10px!important;padding:0 4px!important}
+    .overviewPriceBtn,.overviewPricePlain,.overviewPriceEmpty{min-height:56px!important;font-size:11.5px!important;padding:3px 1px!important}
+    .overviewPriceBtn .tiny{font-size:8.2px!important;margin-top:2px!important}
+    .overviewInfoBtn{height:34px;min-height:34px;padding:0 9px;border-radius:999px;border:1px solid #d6f3ed;background:#fff;color:#46616d;font-size:11px;font-weight:1000;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center}
+    @media(max-width:430px){
+      .wrap{padding-top:10px!important}
+      .wrap > section.card.header,.card.header{min-height:108px!important;padding:16px 16px 16px!important}
+      #app > .viewSwitchCard,.viewSwitchCard{top:0!important}
+      h1{font-size:clamp(14px,4.05vw,18px)!important;letter-spacing:-1.15px!important;margin-right:94px!important}
+      .eyebrow{font-size:12px!important;margin-right:94px!important}
+      .credit{font-size:12.4px!important;margin-right:94px!important}
+      .brandText{font-size:17px!important}
+      .overviewTableShell{--ov-term:58px!important;--ov-manage:50px!important;--ov-price:86px!important}
+    }
+
   </style>
 </head>
 <body>
@@ -712,7 +833,7 @@
   <div class="wrap">
     <section class="card header">
       <div class="eyebrow">● 쿠쿠 영업 지원 모바일 시스템</div>
-      <h1>쿠쿠렌탈 제품가격 &amp; 수당계산기 <span class="versionInline">V89</span></h1>
+      <h1>쿠쿠렌탈 제품가격 &amp; 수당계산기 <span class="versionInline">V90</span></h1>
       <p class="sub"></p>
       <div class="credit">기획개발: 김건일 마스터</div>
       <div class="brand"><span class="brandText">CUCKOO</span></div>
@@ -2601,39 +2722,21 @@
       const priceColGroupHtml = saleColumns.map(() => `<col style="width:${priceColWidth}px">`).join('');
       return `
         <div class="overviewSummaryInlineDetail">
-          <div class="overviewDetail">
-            <div class="overviewDetailHead">
-              ${imgHtml || '<div class="overviewDetailImg"></div>'}
-              <div>
-                <div class="overviewDetailTitle">${escapeHtml(group.model)}</div>
-                <div class="overviewDetailSub">${escapeHtml(group.category)}${group.productType ? ' · ' + escapeHtml(group.productType) : ''} · 옵션 ${group.optionCount}개</div>
-                <div class="overviewDetailActions">
-                  <button type="button" class="overviewDetailClose" data-ov-close="${escapeAttr(group.key)}">접기</button>
-                  ${group.imageUrl ? `<button type="button" class="overviewImageBtn" data-ov-image-url="${escapeAttr(group.imageUrl)}" data-ov-image-title="${escapeAttr(group.model)}" data-ov-image-sub="${escapeAttr(group.category)}">🔍 제품확대</button>` : ''}
-                  <button type="button" class="overviewInfoBtn" data-ov-info-key="${escapeAttr(group.key)}">제품보기</button>
-                </div>
-                <div class="overviewTopInfo">
-                  <div class="overviewTopInfoLabel">정상가</div>
-                  <div>${normalPriceValue > 0 ? `<span class="overviewTopNormal">${escapeHtml(won0(normalPriceValue))}</span>` : '<span style="font-size:14px;color:#8aa0aa;font-weight:900">-</span>'}</div>
-                </div>
-              </div>
+          ${saleColumns.length > 3 ? `<div class="overviewScrollHint">← 가격표를 좌우로 스크롤하세요 →</div>` : ""}
+          <div class="overviewTableShell">
+            <div class="overviewTableFixed">
+              <table class="overviewPriceTable overviewFixedTable">
+                <colgroup><col><col></colgroup>
+                <thead><tr><th>기간</th><th>구분</th></tr></thead>
+                <tbody>${fixedRows}</tbody>
+              </table>
             </div>
-            ${saleColumns.length > 3 ? `<div class="overviewScrollHint">← 가격표를 좌우로 스크롤하세요 →</div>` : ""}
-            <div class="overviewTableShell">
-              <div class="overviewTableFixed">
-                <table class="overviewPriceTable overviewFixedTable">
-                  <colgroup><col><col></colgroup>
-                  <thead><tr><th>기간</th><th>구분</th></tr></thead>
-                  <tbody>${fixedRows}</tbody>
-                </table>
-              </div>
-              <div class="overviewTableScroll">
-                <table class="overviewPriceTable overviewScrollTable" style="min-width:${scrollMinWidth}px">
-                  <colgroup>${priceColGroupHtml}</colgroup>
-                  <thead><tr>${saleColumns.map(col => `<th>${escapeHtml(col.label)}</th>`).join('')}</tr></thead>
-                  <tbody>${priceRows}</tbody>
-                </table>
-              </div>
+            <div class="overviewTableScroll">
+              <table class="overviewPriceTable overviewScrollTable" style="min-width:${scrollMinWidth}px">
+                <colgroup>${priceColGroupHtml}</colgroup>
+                <thead><tr>${saleColumns.map(col => `<th>${escapeHtml(col.label)}</th>`).join('')}</tr></thead>
+                <tbody>${priceRows}</tbody>
+              </table>
             </div>
           </div>
         </div>`;
